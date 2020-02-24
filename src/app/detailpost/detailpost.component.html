@@ -1,0 +1,61 @@
+<div class="container">
+  <!-- Detail post -->
+  <div class=" card mb-4 shadow-sm" *ngIf="!isEdit">
+      <div class="card-body">
+        <h3 class="card-title display-3">{{iPost.title}}</h3>
+        <p class="card-text">{{iPost.content}}</p>
+        <div class="d-flex justify-content-between align-items-center">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+      <a class="mt-1" routerLink=""><< Back to posts list</a>
+      </div>
+      <div class="col-sm-6 d-flex justify-content-end">
+      <button type="button" class="btn btn-sm btn-light" (click)="showEdit()">Edit</button>
+      <button type="button" class="btn btn-sm btn-light" routerLink="" (click)="deletePost(iPost.id)">Delete</button>
+    </div>
+    </div>
+
+  <div *ngIf="!isEdit" style="max-width: 500px;">
+    <h1>Comments</h1>
+      <div class="mb-4 shadow-sm row" *ngFor="let comment of iPost.commentpost">
+        <p class="col-sm-1"><strong>{{comment.name}}: </strong></p>
+        <p class="col-sm-10"> {{comment.comment}} </p>
+      </div>
+  </div>
+
+  <div *ngIf="!isEdit">
+    <h1>Leave your comments</h1> 
+    <div class="form-group col-sm-3" >
+        <label>Name</label>
+        <input type="text" class="form-control" value="{{Name}}" #name required>
+    </div>
+    <div class="form-group col-sm-6">
+        <label>Comment</label>
+        <input type="text" class="form-control" value="" #comment required>    
+    </div>
+    <button type="submit" class="btn btn-success" (click)="addComment(iPost.id, name.value, comment.value); name.value=Name; comment.value=''; ">POST COMMENT</button>
+  </div>
+
+  <!-- Edit post -->
+  <div class="container" style="max-width: 500px;">
+    <form *ngIf="isEdit" style="max-width: 500px;">
+      <h1>Edit Post</h1> 
+      <div class="form-group" >
+          <label>Title</label>
+          <input type="text" class="form-control" value="{{iPost.title}}" #title required>
+      </div>
+      <div class="form-group">
+          <label>Content</label>
+          <!-- <input type="text" class="form-control" value="{{iPost.content}}" #content required> -->
+          <textarea class="form-control" rows="8"  value="{{iPost.content}}" #content required></textarea>
+      </div>
+      <button type="submit" class="btn btn-success" routerLink="" (click)="editPost(iPost.id, title.value , content.value);">Update</button>
+      <button type="cancel" class="btn btn-outline-secondary" (click)="showEdit()">Cancel</button>
+    </form>
+  </div>
+
+</div>

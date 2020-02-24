@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PostComponent } from './post/post.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'RTHBlog';
+  addPost = false;
+  name = localStorage.getItem('fname');
+
+  logout(){
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('fname');
+    this.name = '';
+    alert('You are logout. Thank you!');
+  }
+
+
 }

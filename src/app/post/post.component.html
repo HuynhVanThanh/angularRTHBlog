@@ -1,0 +1,14 @@
+<div class="container" *ngIf="!isDetail">
+  <div class="row">
+  <div class="col-md-4" *ngFor="let post of postlist">
+    <div class="card mb-4 shadow-sm" >
+      <div class="card-body">
+        <h1 class="card-title">{{post.title}}</h1>
+        <p class="card-text">{{post.content}}</p>
+        </div>
+        <a class="btn text-right" [routerLink]="['/detail', post.id]" role="button" (click)="viewDetailPost(post.title , post.content)">Read more &raquo;</a>
+    </div>
+    <br>
+  </div>
+  </div> 
+</div>
